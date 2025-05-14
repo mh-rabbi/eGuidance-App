@@ -23,9 +23,9 @@
             android:text="SignUp"
             android:textSize="30sp"
             android:gravity="center"
-            android:background="#E6F0FA"
+            android:background="@color/Navy_Blue"
             android:textStyle="bold"
-            android:textColor="@color/Navy_Blue"/>
+            android:textColor="@color/Soft_Blue"/>
 
         <LinearLayout
             android:layout_width="match_parent"

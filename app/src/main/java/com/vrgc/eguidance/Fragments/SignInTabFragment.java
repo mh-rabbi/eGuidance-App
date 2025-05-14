@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.vrgc.eguidance.Activity.HomeActivity;
 import com.vrgc.eguidance.Activity.MainActivity;
 import com.vrgc.eguidance.R;
 
@@ -31,13 +32,12 @@ public class SignInTabFragment extends Fragment {
 
         btnSignIn.setOnClickListener(v -> handleSignin());
 
-
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
     private void handleSignin() {
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
-        Intent i = new Intent(getActivity(), MainActivity.class);
+        Intent i = new Intent(getActivity(), HomeActivity.class);
         startActivity(i);
 
         if (!isValidEmail(email)) {
