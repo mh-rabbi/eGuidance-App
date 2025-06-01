@@ -14,12 +14,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.vrgc.eguidance.R;
 
+import java.util.HashMap;
+
 public class SignUpTabFragment extends Fragment {
-    EditText emailInput, passwordInput, confirmPasswordInput;
+
+    EditText emailInput, passwordInput, confirmPasswordInput, nameInput;
     Button signBtn;
-    String password,email,confirmPassword;
+    FirebaseAuth auth;
+    DatabaseReference dbRef;
+
+    String email, password, confirmPassword, name;
+    final String defaultRole = "Patient";
 
     @Nullable
     @Override
@@ -29,16 +40,22 @@ public class SignUpTabFragment extends Fragment {
         emailInput = view.findViewById(R.id.signup_email);
         passwordInput = view.findViewById(R.id.signup_password);
         confirmPasswordInput = view.findViewById(R.id.signup_confirm_password);
+        nameInput = view.findViewById(R.id.signup_name);
         signBtn = view.findViewById(R.id.signup_button);
+
+        auth = FirebaseAuth.getInstance();
+        dbRef = FirebaseDatabase.getInstance().getReference("users");
 
         signBtn.setOnClickListener(v -> handleSignUp());
 
         return view;
     }
+
     private void handleSignUp() {
         email = emailInput.getText().toString().trim();
         password = passwordInput.getText().toString().trim();
         confirmPassword = confirmPasswordInput.getText().toString().trim();
+        name = nameInput.getText().toString().trim();
 
         if (!isValidEmail(email)) {
             emailInput.setError("Invalid email format");
@@ -52,7 +69,37 @@ public class SignUpTabFragment extends Fragment {
 
         if (!password.equals(confirmPassword)) {
             confirmPasswordInput.setError("Passwords do not match");
+            return;
         }
+
+        if (TextUtils.isEmpty(name)) {
+            nameInput.setError("Name cannot be empty");
+            return;
+        }
+
+        // Firebase signup
+        auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser firebaseUser = auth.getCurrentUser();
+                        String uid = firebaseUser.getUid();
+
+                        HashMap<String, Object> userMap = new HashMap<>();
+                        userMap.put("name", name);
+                        userMap.put("email", email);
+                        userMap.put("role", defaultRole);
+                        userMap.put("joinedAt", System.currentTimeMillis());
+
+                        dbRef.child(uid).setValue(userMap)
+                                .addOnSuccessListener(unused -> {
+                                    showToast("Signup successful! You can now log in.");
+                                    clearFields();
+                                })
+                                .addOnFailureListener(e -> showToast("Signup failed: " + e.getMessage()));
+                    } else {
+                        showToast("Signup failed: " + task.getException().getMessage());
+                    }
+                });
     }
 
     private boolean isValidEmail(String email) {
@@ -60,7 +107,6 @@ public class SignUpTabFragment extends Fragment {
     }
 
     private boolean isComplexPassword(String password) {
-        // At least 8 chars, 1 upper, 1 number, 1 special
         return password.matches("^(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$");
     }
 
@@ -68,4 +114,10 @@ public class SignUpTabFragment extends Fragment {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 
+    private void clearFields() {
+        nameInput.setText("");
+        emailInput.setText("");
+        passwordInput.setText("");
+        confirmPasswordInput.setText("");
+    }
 }

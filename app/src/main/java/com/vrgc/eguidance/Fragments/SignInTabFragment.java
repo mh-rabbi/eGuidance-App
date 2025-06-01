@@ -27,7 +27,6 @@ public class SignInTabFragment extends Fragment {
     Spinner roleSpinner;
     String selectedRole;
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signin_tab, container, false);

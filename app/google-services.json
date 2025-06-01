@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "360693476080",
+    "project_id": "eguidanceauth",
+    "storage_bucket": "eguidanceauth.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360693476080:android:85f037a343340f0492f035",
+        "android_client_info": {
+          "package_name": "com.vrgc.eguidance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXrnkeHMNip9RcppD2v9iDbzQrkIyTweY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

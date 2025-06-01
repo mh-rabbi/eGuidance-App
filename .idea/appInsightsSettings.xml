@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.vrgc.eguidance" />
+                  <option name="mobileSdkAppId" value="1:360693476080:android:85f037a343340f0492f035" />
+                  <option name="projectId" value="eguidanceauth" />
+                  <option name="projectNumber" value="360693476080" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
