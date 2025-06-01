@@ -7,8 +7,11 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +24,9 @@ import com.vrgc.eguidance.R;
 public class SignInTabFragment extends Fragment {
     private EditText edtEmail, edtPassword;
     private Button btnSignIn;
+    Spinner roleSpinner;
+    String selectedRole;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,6 +35,22 @@ public class SignInTabFragment extends Fragment {
         edtPassword = view.findViewById(R.id.signin_password);
         btnSignIn = view.findViewById(R.id.signin_button);
         edtEmail = view.findViewById(R.id.signin_user);
+        roleSpinner = view.findViewById(R.id.user_role_spinner);
+
+        String[] roles = {"Patient", "Doctor", "Admin"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item, roles);
+        roleSpinner.setAdapter(adapter);
+        roleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedRole = roles[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                selectedRole = "Patient"; // default
+            }
+        });
 
         btnSignIn.setOnClickListener(v -> handleSignin());
 

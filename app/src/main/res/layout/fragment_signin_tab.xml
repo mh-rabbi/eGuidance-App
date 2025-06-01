@@ -42,9 +42,22 @@
                 android:padding="8dp"
                 android:inputType="textEmailAddress"
                 android:hint="Email"
-                android:drawableLeft="@drawable/email"
+                android:drawableStart="@drawable/email"
                 android:drawablePadding="8dp"
                 />
+            <Spinner
+                android:id="@+id/user_role_spinner"
+                android:background="@drawable/edittext_bg"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:drawableStart="@drawable/user"
+                android:drawableEnd="@drawable/drop_down"
+                android:drawablePadding="8dp"
+                />
+
             <EditText
                 android:layout_width="280dp"
                 android:layout_height="50dp"
@@ -55,7 +68,7 @@
                 android:layout_marginTop="20dp"
                 android:padding="8dp"
                 android:hint="Password"
-                android:drawableLeft="@drawable/password"
+                android:drawableStart="@drawable/password"
                 android:drawablePadding="8dp"
                 />
             <Button
@@ -74,28 +87,12 @@
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:layout_height="wrap_content"
-                android:text="I don't have any account"
+                android:text="I don't have any account\nSwipe right for sign up"
+                android:shadowColor="@color/Bright_Teal"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:gravity="center"/>
-            <LinearLayout
-                android:layout_width="280dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/fb_login"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/fb"/>
-                <ImageView
-                    android:id="@+id/google_login"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/google"/>
-            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 
