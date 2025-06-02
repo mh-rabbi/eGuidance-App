@@ -32,7 +32,7 @@ public class SignUpTabFragment extends Fragment {
     String email, password, confirmPassword, name;
     final String defaultRole = "Patient";
 
-    @Nullable
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup_tab, container, false);
@@ -111,8 +111,13 @@ public class SignUpTabFragment extends Fragment {
     }
 
     private void showToast(String msg) {
-        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        if (getView() != null) {
+            getView().post(() -> {
+                Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
+            });
+        }
     }
+
 
     private void clearFields() {
         nameInput.setText("");
