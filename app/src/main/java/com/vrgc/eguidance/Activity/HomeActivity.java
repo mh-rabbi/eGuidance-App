@@ -19,11 +19,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.vrgc.eguidance.Fragments.AboutUsFragment;
 import com.vrgc.eguidance.Fragments.HomeFragment;
 import com.vrgc.eguidance.Fragments.ProfileFragment;
+import com.vrgc.eguidance.Fragments.ProfileSettingsFragment;
+import com.vrgc.eguidance.Fragments.ShareFragment;
 import com.vrgc.eguidance.R;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     @Override
@@ -37,7 +40,8 @@ public class HomeActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
+        navigationView.setNavigationItemSelectedListener(this);
+        //navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
                 R.string.close_nav);
@@ -65,13 +69,13 @@ public class HomeActivity extends AppCompatActivity {
             replaceFragment(new HomeFragment());
         }else if (itemId == R.id.nav_profile) {
             replaceFragment(new ProfileFragment());
-//        }
-//        else if (itemId == R.id.nav_settings) {
-//            replaceFragment(new PofileSettingsFragment());
-//        } else if (itemId == R.id.nav_share) {
-//            replaceFragment(new ShareFragment());
-//        } else if (itemId == R.id.nav_about) {
-//            replaceFragment(new AboutUsFragment());
+        }
+        else if (itemId == R.id.nav_settings) {
+            replaceFragment(new ProfileSettingsFragment());
+        } else if (itemId == R.id.nav_share) {
+            replaceFragment(new ShareFragment());
+        } else if (itemId == R.id.nav_about) {
+            replaceFragment(new AboutUsFragment());
         } else if (itemId == R.id.nav_logout) {
             Toast.makeText(this, "Logout Successfully!", Toast.LENGTH_SHORT).show();
             finish();
@@ -86,5 +90,10 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }
