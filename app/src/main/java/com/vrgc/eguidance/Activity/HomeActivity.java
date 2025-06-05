@@ -2,6 +2,9 @@ package com.vrgc.eguidance.Activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,6 +22,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.vrgc.eguidance.Fragments.AboutUsFragment;
 import com.vrgc.eguidance.Fragments.HomeFragment;
 import com.vrgc.eguidance.Fragments.ProfileFragment;
@@ -41,7 +50,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        //navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
                 R.string.close_nav);
@@ -52,6 +60,34 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+
+        // Load user profile data into nav_header
+        View headerView = navigationView.getHeaderView(0);
+        TextView userName = headerView.findViewById(R.id.user_name);
+        TextView userEmail = headerView.findViewById(R.id.user_email);
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        // Load name and email from 'users' node
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(uid);
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    if (snapshot.hasChild("name")) {
+                        userName.setText(snapshot.child("name").getValue(String.class));
+                    }
+                    if (snapshot.hasChild("email")) {
+                        userEmail.setText(snapshot.child("email").getValue(String.class));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle error
+            }
+        });
+
         replaceFragment(new HomeFragment());
     }
 
