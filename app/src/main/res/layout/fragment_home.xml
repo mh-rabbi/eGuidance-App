@@ -131,7 +131,7 @@
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:id="@+id/booking"
-                            android:src="@drawable/booking"
+                            android:src="@drawable/booksession"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
 
@@ -167,19 +167,19 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/homeName"
-                            android:text="Home"
+                            android:id="@+id/freeChatwithListener"
+                            android:text="Free Chat"
                             android:textSize="20sp"
                             android:textColor="@color/Navy_Blue"
                             android:layout_marginTop="10dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_below="@+id/homeImage"/>
+                            android:layout_below="@+id/freeChat"/>
 
                         <ImageView
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:id="@+id/homeImage"
-                            android:src="@drawable/logo"
+                            android:id="@+id/freeChat"
+                            android:src="@drawable/free_chat"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
 
@@ -202,19 +202,19 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/beautyName"
-                            android:text="text"
+                            android:id="@+id/mentalHealthTest"
+                            android:text="Mental Test"
                             android:textSize="20sp"
                             android:textColor="@color/Navy_Blue"
                             android:layout_marginTop="10dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_below="@+id/beautyImage"/>
+                            android:layout_below="@+id/mentalTest"/>
 
                         <ImageView
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:id="@+id/beautyImage"
-                            android:src="@drawable/logo"
+                            android:id="@+id/mentalTest"
+                            android:src="@drawable/mentaltest"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
 
@@ -250,19 +250,19 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/pharmName"
-                            android:text="text"
+                            android:id="@+id/takeEmotionalTest"
+                            android:text="Emotional Test"
                             android:textSize="20sp"
                             android:textColor="@color/Navy_Blue"
                             android:layout_marginTop="10dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_below="@+id/pharmImage"/>
+                            android:layout_below="@+id/emotionalTest"/>
 
                         <ImageView
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:id="@+id/pharmImage"
-                            android:src="@drawable/logo"
+                            android:id="@+id/emotionalTest"
+                            android:src="@drawable/emotiontest"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
 
@@ -285,19 +285,19 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/grocName"
-                            android:text="text"
+                            android:id="@+id/exploreService"
+                            android:text="Our Services"
                             android:textSize="20sp"
                             android:textColor="@color/Navy_Blue"
                             android:layout_marginTop="10dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_below="@+id/grocImage"/>
+                            android:layout_below="@+id/ourServices"/>
 
                         <ImageView
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:id="@+id/grocImage"
-                            android:src="@drawable/logo"
+                            android:id="@+id/ourServices"
+                            android:src="@drawable/ourservices"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
 
