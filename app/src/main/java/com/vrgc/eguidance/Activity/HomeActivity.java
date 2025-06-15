@@ -28,7 +28,7 @@ import com.vrgc.eguidance.Fragments.AboutUsFragment;
 import com.vrgc.eguidance.Fragments.HomeFragment;
 import com.vrgc.eguidance.Fragments.ProfileFragment;
 import com.vrgc.eguidance.Fragments.ProfileSettingsFragment;
-import com.vrgc.eguidance.Fragments.NotificationFragment;
+import com.vrgc.eguidance.Fragments.UserNotificationFragment;
 import com.vrgc.eguidance.R;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -105,7 +105,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         else if (itemId == R.id.nav_settings) {
             replaceFragment(new ProfileSettingsFragment());
         } else if (itemId == R.id.nav_notification) {
-            replaceFragment(new NotificationFragment());
+            replaceFragment(new UserNotificationFragment());
         } else if (itemId == R.id.nav_about) {
             replaceFragment(new AboutUsFragment());
         } else if (itemId == R.id.nav_logout) {
