@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.vrgc.eguidance.Activity.AdminDashboardActivity;
+import com.vrgc.eguidance.Activity.DoctorHomeActivity;
 import com.vrgc.eguidance.Activity.HomeActivity;
 import com.vrgc.eguidance.R;
 
@@ -99,14 +101,29 @@ public class SignInTabFragment extends Fragment {
                                     String savedRole = snapshot.child("role").getValue(String.class);
                                     String name = snapshot.child("name").getValue(String.class);
 
-                                    // Optional: Role check
+                                    // Role check
                                     if (!savedRole.equals(selectedRole)) {
                                         Toast.makeText(getActivity(), "Role mismatch! Please select correct role.", Toast.LENGTH_SHORT).show();
                                         return;
                                     }
 
                                     // Navigate to HomeActivity
-                                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                   // Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                    // Navigate to appropriate activity based on role
+                                    Intent intent;
+                                    switch (savedRole) {
+                                        case "Admin":
+                                            intent = new Intent(getActivity(), AdminDashboardActivity.class);
+                                            break;
+                                        case "Doctor":
+                                            intent = new Intent(getActivity(), DoctorHomeActivity.class);
+                                            break;
+                                        case "Patient":
+                                            intent = new Intent(getActivity(), HomeActivity.class);
+                                            break;
+                                        default:
+                                            throw new IllegalStateException("Unexpected value: " + savedRole);
+                                    }
                                     intent.putExtra("userName", name);
                                     intent.putExtra("userRole", savedRole);
                                     startActivity(intent);

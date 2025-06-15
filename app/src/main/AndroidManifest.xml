@@ -13,6 +13,12 @@
         android:theme="@style/Theme.EGuidance"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.DoctorHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AdminDashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.OurServicesActivity"
             android:exported="false" />
         <activity
