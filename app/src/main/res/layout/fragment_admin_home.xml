@@ -123,12 +123,12 @@
                             android:textColor="@color/Navy_Blue"
                             android:layout_marginTop="10dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_below="@+id/booking"/>
+                            android:layout_below="@+id/adminBooking"/>
 
                         <ImageView
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:id="@+id/booking"
+                            android:id="@+id/adminBooking"
                             android:src="@drawable/booksession"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
