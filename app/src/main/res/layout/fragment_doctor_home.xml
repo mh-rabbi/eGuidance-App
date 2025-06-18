@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/Soft_Blue"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Fragments.DoctorHomeFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -35,7 +36,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/vrgc_service"
-                android:text="Take eGuidance with our services"
+                android:text="Give Your BEST services for a healthy Society"
                 android:textSize="14sp"
                 android:layout_marginStart="18dp"
                 android:textColor="@color/black"
@@ -68,7 +69,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/addDoctor"
+                    android:id="@+id/cardAssistPatient"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     app:cardElevation="20dp"
@@ -86,7 +87,7 @@
                             android:layout_below="@+id/addDoctors"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Add Doctor"
+                            android:text="Assist Patient"
                             android:textColor="@color/Navy_Blue"
                             android:textSize="20sp" />
 
@@ -96,13 +97,13 @@
                             android:layout_height="70dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
-                            android:src="@drawable/adddoctor" />
+                            android:src="@drawable/assistance" />
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/adminBooking"
+                    android:id="@+id/cardViewSchedules"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -119,7 +120,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/bookSession"
-                            android:text="ViewBookings"
+                            android:text="View Schedule"
                             android:textSize="20sp"
                             android:textColor="@color/Navy_Blue"
                             android:layout_marginTop="10dp"
@@ -130,7 +131,7 @@
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:id="@+id/img2"
-                            android:src="@drawable/booksession"
+                            android:src="@drawable/viewschedule"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
 
@@ -151,7 +152,7 @@
                 app:layout_constraintTop_toBottomOf="@id/row1">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/manageUser"
+                    android:id="@+id/cardFreeSupport"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -168,7 +169,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/managementusers"
-                            android:text="Manage User"
+                            android:text="Free Support"
                             android:textSize="20sp"
                             android:textColor="@color/Navy_Blue"
                             android:layout_marginTop="10dp"
@@ -179,7 +180,7 @@
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:id="@+id/freeChat"
-                            android:src="@drawable/manageuser"
+                            android:src="@drawable/free_chat"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
 

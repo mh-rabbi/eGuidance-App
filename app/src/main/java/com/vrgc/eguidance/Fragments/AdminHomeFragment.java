@@ -19,22 +19,30 @@ import com.vrgc.eguidance.Activity.Admin.ManageUserActivity;
 import com.vrgc.eguidance.R;
 
 public class AdminHomeFragment extends Fragment {
-    public ImageView imgAdminBooking;
-    public CardView cardAddDoctor, cardManageUser;
+    public CardView cardAdminBooking, cardAddDoctor, cardManageUser;
+
     @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
 
-        imgAdminBooking = view.findViewById(R.id.adminBooking);
         cardAddDoctor = view.findViewById(R.id.addDoctor);
+        cardAdminBooking = view.findViewById(R.id.adminBooking);
         cardManageUser = view.findViewById(R.id.manageUser);
 
         cardAddDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddDoctorActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardAdminBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AdminManageBookingSessions.class);
                 startActivity(intent);
             }
         });
@@ -47,13 +55,7 @@ public class AdminHomeFragment extends Fragment {
             }
         });
 
-        imgAdminBooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AdminManageBookingSessions.class);
-                startActivity(intent);
-            }
-            });
+
         return view;
     }
 }
