@@ -96,7 +96,7 @@
                             android:layout_height="70dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
-                            android:src="@drawable/assistance" />
+                            android:src="@drawable/adddoctor" />
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
@@ -150,6 +150,7 @@
                 app:layout_constraintTop_toBottomOf="@id/row1">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/manageUser"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -165,8 +166,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/freeChatwithListener"
-                            android:text="MAnage"
+                            android:id="@+id/managementusers"
+                            android:text="Manage User"
                             android:textSize="20sp"
                             android:textColor="@color/Navy_Blue"
                             android:layout_marginTop="10dp"
@@ -177,7 +178,7 @@
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:id="@+id/freeChat"
-                            android:src="@drawable/free_chat"
+                            android:src="@drawable/manageuser"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
 

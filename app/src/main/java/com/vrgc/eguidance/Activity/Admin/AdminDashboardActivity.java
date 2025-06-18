@@ -1,5 +1,6 @@
-package com.vrgc.eguidance.Activity;
+package com.vrgc.eguidance.Activity.Admin;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,26 +26,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.vrgc.eguidance.Fragments.AboutUsFragment;
-import com.vrgc.eguidance.Fragments.HomeFragment;
+import com.vrgc.eguidance.Fragments.AdminHomeFragment;
+import com.vrgc.eguidance.Fragments.UserNotificationFragment;
 import com.vrgc.eguidance.Fragments.ProfileFragment;
 import com.vrgc.eguidance.Fragments.ProfileSettingsFragment;
-import com.vrgc.eguidance.Fragments.UserNotificationFragment;
 import com.vrgc.eguidance.R;
 
-import android.graphics.Typeface;
-import android.view.Menu;
-import android.graphics.Color;
-
-import com.vrgc.eguidance.Utils.FirebaseUtils;
-
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+public class AdminDashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_admin_dashboard);
 
         Toolbar toolbar = findViewById(R.id.toolbar); //Ignore red line errors
         setSupportActionBar(toolbar);
@@ -53,17 +48,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // For notification count show to the nav drawer menu
-        Menu menu = navigationView.getMenu();
-        MenuItem notifItem = menu.findItem(R.id.nav_notification);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
                 R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new AdminHomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
@@ -94,27 +85,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        // Create TextView badge
-        TextView actionView = new TextView(this);
-        actionView.setPadding(12, 4, 12, 4);
-        actionView.setTextColor(Color.WHITE);
-        actionView.setTypeface(null, Typeface.BOLD);
-        actionView.setBackgroundResource(R.drawable.circle_background); // badge style
-
-        notifItem.setActionView(actionView);
-
-        // Set the count from Firebase
-        uid = FirebaseAuth.getInstance().getUid();
-        FirebaseUtils.getUnseenNotificationCount(uid, count -> {
-            if (count > 0) {
-                actionView.setText(String.valueOf(count));
-            } else {
-                actionView.setText("");
-            }
-        });
-
-
-        replaceFragment(new HomeFragment());
+        replaceFragment(new AdminHomeFragment());
     }
 
     private  void replaceFragment(Fragment fragment) {
@@ -128,7 +99,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int itemId = item.getItemId();
 
         if (itemId == R.id.nav_home) {
-            replaceFragment(new HomeFragment());
+            replaceFragment(new AdminHomeFragment());
         }else if (itemId == R.id.nav_profile) {
             replaceFragment(new ProfileFragment());
         }

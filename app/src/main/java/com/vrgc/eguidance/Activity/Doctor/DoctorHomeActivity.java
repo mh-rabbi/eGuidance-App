@@ -1,4 +1,4 @@
-package com.vrgc.eguidance.Activity;
+package com.vrgc.eguidance.Activity.Doctor;
 
 import android.os.Bundle;
 

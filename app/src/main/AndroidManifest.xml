@@ -13,34 +13,37 @@
         android:theme="@style/Theme.EGuidance"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.AddDoctorActivity"
+            android:name=".Activity.Admin.ManageUserActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.AdminManageBookingSessions"
+            android:name=".Activity.Admin.AddDoctorActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.DoctorHomeActivity"
+            android:name=".Activity.Admin.AdminManageBookingSessions"
             android:exported="false" />
         <activity
-            android:name=".Activity.AdminDashboardActivity"
+            android:name=".Activity.Doctor.DoctorHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.OurServicesActivity"
+            android:name=".Activity.Admin.AdminDashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.EmotionalTestActivity"
+            android:name=".Activity.User.OurServicesActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.FreeChatActivity"
+            android:name=".Activity.User.EmotionalTestActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.BookSessionActivity"
+            android:name=".Activity.User.FreeChatActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.AssistanceActivity"
+            android:name=".Activity.User.BookSessionActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.HomeActivity"
+            android:name=".Activity.User.AssistanceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.User.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.MainActivity"

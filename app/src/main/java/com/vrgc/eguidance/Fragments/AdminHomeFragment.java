@@ -10,13 +10,17 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.vrgc.eguidance.Activity.AdminManageBookingSessions;
+import com.vrgc.eguidance.Activity.Admin.AddDoctorActivity;
+import com.vrgc.eguidance.Activity.Admin.AdminManageBookingSessions;
+import com.vrgc.eguidance.Activity.Admin.ManageUserActivity;
 import com.vrgc.eguidance.R;
 
 public class AdminHomeFragment extends Fragment {
     public ImageView imgAdminBooking;
+    public CardView cardAddDoctor, cardManageUser;
     @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
@@ -24,6 +28,24 @@ public class AdminHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
 
         imgAdminBooking = view.findViewById(R.id.adminBooking);
+        cardAddDoctor = view.findViewById(R.id.addDoctor);
+        cardManageUser = view.findViewById(R.id.manageUser);
+
+        cardAddDoctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddDoctorActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardManageUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ManageUserActivity.class);
+                startActivity(intent);
+            }
+        });
 
         imgAdminBooking.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,24 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:id="@+id/main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".Activity.Admin.AdminManageBookingSessions">
+    android:background="@color/Soft_Blue"
+    tools:context=".Activity.Admin.ManageUserActivity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="All Booking Requests"
+        android:text="Manage Users"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:paddingBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bookingRecyclerView"
+        android:id="@+id/userRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
+
 
 </LinearLayout>

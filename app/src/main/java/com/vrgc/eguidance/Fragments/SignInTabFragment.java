@@ -25,9 +25,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.vrgc.eguidance.Activity.AdminDashboardActivity;
-import com.vrgc.eguidance.Activity.DoctorHomeActivity;
-import com.vrgc.eguidance.Activity.HomeActivity;
+import com.vrgc.eguidance.Activity.Admin.AdminDashboardActivity;
+import com.vrgc.eguidance.Activity.Doctor.DoctorHomeActivity;
+import com.vrgc.eguidance.Activity.User.HomeActivity;
 import com.vrgc.eguidance.R;
 
 public class SignInTabFragment extends Fragment {

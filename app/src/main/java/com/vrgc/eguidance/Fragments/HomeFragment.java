@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.vrgc.eguidance.Activity.AssistanceActivity;
-import com.vrgc.eguidance.Activity.OurServicesActivity;
+import com.vrgc.eguidance.Activity.User.AssistanceActivity;
+import com.vrgc.eguidance.Activity.User.OurServicesActivity;
 import com.vrgc.eguidance.R;
 import android.content.Intent;
 import android.widget.ImageView;
@@ -16,9 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
-import com.vrgc.eguidance.Activity.BookSessionActivity;
-import com.vrgc.eguidance.Activity.EmotionalTestActivity;
-import com.vrgc.eguidance.Activity.FreeChatActivity;
+import com.vrgc.eguidance.Activity.User.BookSessionActivity;
+import com.vrgc.eguidance.Activity.User.FreeChatActivity;
 
 public class HomeFragment extends Fragment {
 
