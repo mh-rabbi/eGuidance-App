@@ -33,12 +33,9 @@ import com.vrgc.eguidance.R;
 
 import android.graphics.Typeface;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
 import android.graphics.Color;
 
 import com.vrgc.eguidance.Utils.FirebaseUtils;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

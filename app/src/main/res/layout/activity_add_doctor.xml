@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    tools:context=".Activity.AddDoctorActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register New Doctor"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="20dp" />
+
+        <EditText
+            android:id="@+id/edtDoctorName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Doctor Name"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:background="@drawable/edittext_bg" />
+
+        <EditText
+            android:id="@+id/edtDoctorEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_bg" />
+
+        <EditText
+            android:id="@+id/edtDoctorPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_bg" />
+
+        <EditText
+            android:id="@+id/edtDoctorPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Temporary Password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_bg" />
+
+        <Button
+            android:id="@+id/btnAddDoctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Doctor"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+
+</ScrollView>
