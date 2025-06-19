@@ -20,12 +20,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.vrgc.eguidance.Model.Booking;
 import com.vrgc.eguidance.R;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingViewHolder> {
+
+    private static final int BOOKING_DURATION_MINUTES = 60;
 
     List<Booking> bookingList;
     Context context;
@@ -74,54 +75,26 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<String> doctorNames = new ArrayList<>();
                 List<String> doctorIds = new ArrayList<>();
-                List<Boolean> availability = new ArrayList<>();
 
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     String doctorId = snap.getKey();
-                    String name = snap.child("name").getValue(String.class);
-                    if (name != null) {
-                        doctorNames.add(name);
+                    String doctorName = snap.child("name").getValue(String.class);
+                    if (doctorName != null) {
                         doctorIds.add(doctorId);
+                        doctorNames.add(doctorName);
                     }
                 }
 
-                if (doctorNames.isEmpty()) {
-                    Toast.makeText(context, "No registered doctors found.", Toast.LENGTH_SHORT).show();
+                if (doctorIds.isEmpty()) {
+                    Toast.makeText(context, "No doctors found.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Select a Doctor");
-                builder.setItems(doctorNames.toArray(new String[0]), (dialog, which) -> {
-                    String doctorName = doctorNames.get(which);
-                    String doctorId = doctorIds.get(which);
-
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("booked").child(booking.bookingId);
-
-                    Map<String, Object> update = new HashMap<>();
-                    update.put("status", "accepted");
-                    update.put("doctor_name", doctorName);
-                    update.put("doctorId", doctorId);
-
-                    ref.updateChildren(update).addOnSuccessListener(unused -> {
-                        sendNotificationToUser(booking.userId, booking, doctorName);
-                        sendNotificationToDoctor(doctorId, booking);
-                        Toast.makeText(context, "Booking updated and doctor assigned!", Toast.LENGTH_SHORT).show();
-                    });
-                });
-                builder.show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(context, "Failed to load doctors.", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-                // Fetch all bookings to check conflicts
                 bookedRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot bookedSnap) {
+                        List<Boolean> availability = new ArrayList<>();
+
                         for (String docId : doctorIds) {
                             boolean isAvailable = true;
                             for (DataSnapshot b : bookedSnap.getChildren()) {
@@ -130,12 +103,22 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
                                 String date = b.child("counseling_date").getValue(String.class);
                                 String time = b.child("time").getValue(String.class);
 
-                                if ("accepted".equals(status) &&
-                                        docId.equals(assignedDoc) &&
-                                        booking.counseling_date.equals(date) &&
-                                        booking.time.equals(time)) {
-                                    isAvailable = false;
-                                    break;
+                                if ("accepted".equals(status)
+                                        && docId.equals(assignedDoc)
+                                        && booking.counseling_date.equals(date)) {
+
+                                    int newStart = timeToMinutes(booking.time);
+                                    int newEnd = newStart + BOOKING_DURATION_MINUTES;
+
+                                    int bookedStart = timeToMinutes(time);
+                                    int bookedEnd = bookedStart + BOOKING_DURATION_MINUTES;
+
+                                    boolean overlaps = newStart < bookedEnd && bookedStart < newEnd;
+
+                                    if (overlaps) {
+                                        isAvailable = false;
+                                        break;
+                                    }
                                 }
                             }
                             availability.add(isAvailable);
@@ -145,19 +128,24 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {}
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(context, "Failed to load bookings.", Toast.LENGTH_SHORT).show();
+                    }
                 });
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(context, "Failed to load doctors.", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
     private void showAvailableDoctorsDialog(List<String> names, List<String> ids, List<Boolean> availability, Booking booking) {
         String[] displayList = new String[names.size()];
         for (int i = 0; i < names.size(); i++) {
-            String color = availability.get(i) ? "🟢" : "🔴";
-            displayList[i] = color + " " + names.get(i);
+            String statusIcon = availability.get(i) ? "🟢" : "🔴";
+            displayList[i] = statusIcon + " " + names.get(i);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -165,7 +153,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
 
         builder.setItems(displayList, (dialog, which) -> {
             if (!availability.get(which)) {
-                Toast.makeText(context, "Doctor is not available at this time", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "This doctor is already booked at that time.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -189,6 +177,19 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
         builder.show();
     }
 
+    private int timeToMinutes(String timeStr) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.US);  // if 24-hour format: "HH:mm"
+            Date date = sdf.parse(timeStr);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            return calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
     private void sendNotificationToUser(String userId, Booking booking, String doctorName) {
         String msg = "On " + booking.counseling_date + " at " + booking.time +
                 ", " + doctorName + " will assist you. Join your assistance portal.";
@@ -207,6 +208,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
         HashMap<String, Object> map = new HashMap<>();
         map.put("message", message);
         map.put("timestamp", System.currentTimeMillis());
+        map.put("seen", false);
 
         notifRef.child(notifId).setValue(map);
     }
