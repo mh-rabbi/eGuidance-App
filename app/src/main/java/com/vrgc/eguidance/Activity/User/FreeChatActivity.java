@@ -34,7 +34,7 @@ public class FreeChatActivity extends AppCompatActivity {
     private ImageButton sendButton;
     private TextView doctorNameText;
 
-    private List<MessageModel> messageList = new ArrayList<>();
+    private final List<MessageModel> messageList = new ArrayList<>();
     private ChatAdapter adapter;
 
     private String anonymousId, doctorId, doctorName;
