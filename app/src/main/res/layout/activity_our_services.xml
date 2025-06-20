@@ -1,10 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Soft_Blue"
+    android:padding="16dp"
     tools:context=".Activity.User.OurServicesActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Crisis Header -->
+        <TextView
+            android:text="In Crisis? Get Counseling Support"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/Navy_Blue"
+            android:paddingBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="Improve your emotional well-being with virtual counseling and therapy from licensed psychologists, peer support, talks, and tools."
+            android:textSize="16sp"
+            android:paddingBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Concerns Section -->
+        <TextView
+            android:text="We've Got You Covered For Almost Every Concern"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/Navy_Blue"
+            android:paddingBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/servicesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <!-- Support Sections -->
+        <TextView
+            android:text="Get the Support You Need"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/Navy_Blue"
+            android:paddingTop="20dp"
+            android:paddingBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/supportRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <!-- Button -->
+        <Button
+            android:id="@+id/btnGetHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Help"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/Navy_Blue"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</ScrollView>
