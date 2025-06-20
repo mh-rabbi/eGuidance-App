@@ -1,9 +1,14 @@
 package com.vrgc.eguidance.Activity.Admin;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +30,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.vrgc.eguidance.Activity.MainActivity;
+import com.vrgc.eguidance.Activity.User.HomeActivity;
 import com.vrgc.eguidance.Fragments.AboutUsFragment;
 import com.vrgc.eguidance.Fragments.AdminHomeFragment;
 import com.vrgc.eguidance.Fragments.UserNotificationFragment;
@@ -53,6 +60,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        // set default fragment
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new AdminHomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
@@ -60,10 +68,33 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
 
         // Load user profile data into nav_header
         View headerView = navigationView.getHeaderView(0);
+        ImageView profileImage = headerView.findViewById(R.id.user_profile);
         TextView userName = headerView.findViewById(R.id.user_name);
         TextView userEmail = headerView.findViewById(R.id.user_email);
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        // Load profile image from 'userprofile' node
+        DatabaseReference profileRef = FirebaseDatabase.getInstance().getReference("userprofile").child(uid);
+        profileRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String base64Image = snapshot.child("profileImage").getValue(String.class);
+                    if (base64Image != null && !base64Image.isEmpty()) {
+                        byte[] decoded = Base64.decode(base64Image, Base64.DEFAULT);
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
+                        profileImage.setImageBitmap(bitmap);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle error
+            }
+        });
+
         // Load name and email from 'users' node
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(uid);
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -110,8 +141,11 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
         } else if (itemId == R.id.nav_about) {
             replaceFragment(new AboutUsFragment());
         } else if (itemId == R.id.nav_logout) {
-            Toast.makeText(this, "Logout Successfully!", Toast.LENGTH_SHORT).show();
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(AdminDashboardActivity.this, MainActivity.class);
+            startActivity(intent);
             finish();
+            Toast.makeText(this, "Logout Successfully!", Toast.LENGTH_SHORT).show();
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

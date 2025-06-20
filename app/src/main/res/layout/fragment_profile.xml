@@ -92,6 +92,7 @@
 
 
                 <!-- Detail Rows -->
+                <!-- Password -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,8 +115,7 @@
                         android:textColor="#0077CC"
                         android:textSize="16sp"/>
                 </LinearLayout>
-
-                <!-- Repeat for other details -->
+                <!-- Name -->
                 <LinearLayout android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -136,36 +136,7 @@
                         android:textColor="#555"
                         android:textSize="16sp"/>
                 </LinearLayout>
-                <LinearLayout android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="6dp">
-                    <TextView
-                        android:text="Mobile:"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:textColor="#555"
-                        android:textSize="16sp"/>
-
-                    <TextView
-                        android:id="@+id/txt_phone"
-                        android:text=" "
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#555"
-                        android:textSize="16sp"/>
-                </LinearLayout>
-
-
-                <LinearLayout android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="6dp">
-                    <TextView android:text="Address:" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
-                    <TextView android:id="@+id/txt_address" android:text=" " android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
-                </LinearLayout>
-
+                <!-- Age -->
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -188,11 +159,41 @@
                         android:textSize="16sp"/>
 
                 </LinearLayout>
+                <!-- Mobile -->
+                <LinearLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="6dp">
+                    <TextView
+                        android:text="Mobile:"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#555"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/txt_phone"
+                        android:text=" "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#555"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+                <!-- Address -->
+                <LinearLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="6dp">
+                    <TextView android:text="Address:" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
+                    <TextView android:id="@+id/txt_address" android:text=" " android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#555" android:textSize="16sp"/>
+                </LinearLayout>
+
 
 
                 <!-- Edit Profile Button -->
                 <Button
-                    android:id="@+id/own_post"
+                    android:id="@+id/btn_edit_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Edit Profile"

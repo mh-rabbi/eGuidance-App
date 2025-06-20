@@ -1,5 +1,6 @@
 package com.vrgc.eguidance.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +32,7 @@ public class ProfileFragment extends Fragment {
 
     private ImageView profileImageView;
     private TextView nameView, phoneView, addressView, ageView, userNameView, emailView;
+    private Button btnEditProfile;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -44,6 +47,7 @@ public class ProfileFragment extends Fragment {
         ageView = view.findViewById(R.id.txt_age);
         userNameView = view.findViewById(R.id.user_name);
         emailView = view.findViewById(R.id.user_email);
+        btnEditProfile = view.findViewById(R.id.btn_edit_profile);
 
         loadUserProfile();
 
