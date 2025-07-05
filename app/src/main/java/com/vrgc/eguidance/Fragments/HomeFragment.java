@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import com.vrgc.eguidance.Activity.User.AssistanceActivity;
+import com.vrgc.eguidance.Activity.User.EmotionalTestActivity;
 import com.vrgc.eguidance.Activity.User.OurServicesActivity;
 import com.vrgc.eguidance.R;
 import android.content.Intent;
@@ -25,6 +27,7 @@ public class HomeFragment extends Fragment {
 
     // Card images
     private ImageView imgAssistance, imgBookSession, imgFreeChat, imgMentalTest, imgEmotionalTest, imgOurServices;
+    private CardView cardEmotionalTest;
 
     private FirebaseAuth auth;
     private DatabaseReference userRef;
@@ -77,8 +80,8 @@ public class HomeFragment extends Fragment {
         });
 
         imgEmotionalTest.setOnClickListener(v -> {
-                    Toast.makeText(getActivity(), "Emotional Test coming soon!", Toast.LENGTH_SHORT).show();
-                    // startActivity(new Intent(getActivity(), EmotionalTestActivity.class));
+                    //Toast.makeText(getActivity(), "Emotional Test coming soon!", Toast.LENGTH_SHORT).show();
+                     startActivity(new Intent(getActivity(), EmotionalTestActivity.class));
         });
 
         imgOurServices.setOnClickListener(v -> startActivity(new Intent(getActivity(), OurServicesActivity.class)));
