@@ -69,7 +69,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/cardAssistPatient"
+                    android:id="@+id/cardMeetPatient"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     app:cardElevation="20dp"
@@ -87,7 +87,7 @@
                             android:layout_below="@+id/addDoctors"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Assist Patient"
+                            android:text="Meet Patient"
                             android:textColor="@color/Navy_Blue"
                             android:textSize="20sp" />
 

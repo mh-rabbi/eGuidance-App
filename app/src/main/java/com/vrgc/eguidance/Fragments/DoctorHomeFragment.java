@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,16 +12,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.vrgc.eguidance.Activity.Admin.AddDoctorActivity;
-import com.vrgc.eguidance.Activity.Doctor.AssistPatientActivity;
+import com.vrgc.eguidance.Activity.Admin.AssistPatientActivity;
 import com.vrgc.eguidance.Activity.Doctor.FreeSupportActivity;
+import com.vrgc.eguidance.Activity.Doctor.MeetPatientActivity;
 import com.vrgc.eguidance.Activity.Doctor.ViewScheduleActivity;
 import com.vrgc.eguidance.R;
 
@@ -30,7 +28,7 @@ import com.vrgc.eguidance.R;
 public class DoctorHomeFragment extends Fragment {
     private TextView tvWelcome;
 
-    private CardView cardAssistPatient, cardViewSchedules, cardFreeSupport, cardMentalHealthTest, cardTakeEmotionalTest, cardExploreService;
+    private CardView cardMeetPatient, cardViewSchedules, cardFreeSupport, cardMentalHealthTest, cardTakeEmotionalTest, cardExploreService;
 
     private FirebaseAuth auth;
     private DatabaseReference userRef;
@@ -42,7 +40,7 @@ public class DoctorHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_doctor_home, container, false);
 
         tvWelcome = view.findViewById(R.id.vrgc_title);
-        cardAssistPatient = view.findViewById(R.id.cardAssistPatient);
+        cardMeetPatient = view.findViewById(R.id.cardMeetPatient);
         cardViewSchedules = view.findViewById(R.id.cardViewSchedules);
         cardFreeSupport = view.findViewById(R.id.cardFreeSupport);
 
@@ -68,13 +66,13 @@ public class DoctorHomeFragment extends Fragment {
             });
         }
 
-        /*cardAssistPatient.setOnClickListener(new View.OnClickListener() {
+        cardMeetPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AssistPatientActivity.class);
+                Intent intent = new Intent(getActivity(), MeetPatientActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
         cardViewSchedules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

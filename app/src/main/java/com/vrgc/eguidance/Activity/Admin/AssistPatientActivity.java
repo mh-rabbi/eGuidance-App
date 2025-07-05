@@ -1,4 +1,4 @@
-package com.vrgc.eguidance.Activity.Doctor;
+package com.vrgc.eguidance.Activity.Admin;
 
 import android.os.Bundle;
 import android.util.Patterns;
@@ -6,18 +6,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.vrgc.eguidance.R;
 
 import java.util.HashMap;
@@ -40,6 +32,12 @@ public class AssistPatientActivity extends AppCompatActivity {
 
         bookingId = getIntent().getStringExtra("bookingId");
         userId = getIntent().getStringExtra("userId");
+
+        if (bookingId == null || userId == null) {
+            Toast.makeText(this, "Missing booking or user ID", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
         bookingRef = FirebaseDatabase.getInstance().getReference("booked").child(bookingId);
 

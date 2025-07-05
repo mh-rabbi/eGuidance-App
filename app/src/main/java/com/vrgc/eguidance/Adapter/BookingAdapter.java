@@ -1,6 +1,7 @@
 package com.vrgc.eguidance.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.vrgc.eguidance.Activity.Admin.AssistPatientActivity;
 import com.vrgc.eguidance.Model.Booking;
 import com.vrgc.eguidance.R;
 
@@ -171,7 +173,15 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
                 sendNotificationToUser(booking.userId, booking, doctorName);
                 sendNotificationToDoctor(doctorId, booking);
                 Toast.makeText(context, "Doctor assigned successfully!", Toast.LENGTH_SHORT).show();
+
+                // Launch AssistPatientActivity
+                Intent intent = new Intent(context, AssistPatientActivity.class);
+                intent.putExtra("bookingId", booking.bookingId);
+                intent.putExtra("userId", booking.userId);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // required
+                context.startActivity(intent);
             });
+
         });
 
         builder.show();
