@@ -68,13 +68,13 @@ public class DoctorHomeFragment extends Fragment {
             });
         }
 
-        cardAssistPatient.setOnClickListener(new View.OnClickListener() {
+        /*cardAssistPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AssistPatientActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         cardViewSchedules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
