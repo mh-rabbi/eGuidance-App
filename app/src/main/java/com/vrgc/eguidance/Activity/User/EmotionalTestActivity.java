@@ -14,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.vrgc.eguidance.R;
 
 import java.util.HashMap;
@@ -96,6 +97,10 @@ public class EmotionalTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emotional_test);
+
+        LottieAnimationView lottieAnim = findViewById(R.id.lottieAnim);
+        lottieAnim.setAnimation(R.raw.emotion_test);
+        lottieAnim.playAnimation();
 
         questionText = findViewById(R.id.questionText);
         optionsGroup = findViewById(R.id.optionsGroup);
