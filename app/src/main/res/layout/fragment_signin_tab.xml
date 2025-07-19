@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sign_in_scroll"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:fillViewport="true" >
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,12 +16,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="80dp"
                 android:src="@drawable/logo"
-                android:layout_gravity="center"
-                />
+                android:layout_gravity="center" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,7 +31,7 @@
                 android:gravity="center"
                 android:background="@color/Soft_Blue"
                 android:textStyle="bold"
-                android:textColor="@color/Navy_Blue"/>
+                android:textColor="@color/Navy_Blue" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,45 +39,66 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <EditText
+                <!-- Email -->
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="280dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/edittext_bg"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:id="@+id/signin_user"
-                    android:layout_marginTop="10dp"
-                    android:padding="8dp"
-                    android:inputType="textEmailAddress"
-                    android:hint="Email"
-                    android:drawableStart="@drawable/email"
-                    android:drawablePadding="8dp"
-                    />
-                <Spinner
-                    android:id="@+id/user_role_spinner"
-                    android:background="@drawable/edittext_bg"
-                    android:layout_width="280dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:padding="8dp"
-                    android:drawableStart="@drawable/user"
-                    android:drawableEnd="@drawable/drop_down"
-                    android:drawablePadding="8dp"
-                    />
+                    android:hint="Email">
 
-                <EditText
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signin_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:inputType="textEmailAddress"
+                        android:drawableStart="@drawable/email"
+                        android:drawablePadding="8dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Spinner for role -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/role_input_layout"
                     android:layout_width="280dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/edittext_bg"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:id="@+id/signin_password"
-                    android:inputType="textPassword"
                     android:layout_marginTop="20dp"
-                    android:padding="8dp"
-                    android:hint="Password"
-                    android:drawableStart="@drawable/password"
-                    android:drawablePadding="8dp"
-                    />
+                    android:hint="Select Role"
+                    app:endIconMode="dropdown_menu"
+                    app:boxBackgroundMode="outline">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/user_role_dropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@null"
+                        android:inputType="none"
+                        android:drawableStart="@drawable/user"
+                        android:drawablePadding="8dp"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        android:dropDownVerticalOffset="8dp"
+                        android:dropDownHeight="wrap_content"
+                        android:dropDownWidth="match_parent" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Password -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    app:endIconMode="password_toggle"
+                    android:hint="Password">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signin_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:inputType="textPassword"
+                        android:drawableStart="@drawable/password"
+                        android:drawablePadding="8dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <Button
                     android:layout_width="280dp"
                     android:layout_height="50dp"
@@ -84,8 +106,7 @@
                     android:layout_marginTop="20dp"
                     android:id="@+id/signin_button"
                     android:text="SIGN IN"
-                    android:textSize="18sp"
-                    />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_marginTop="10dp"
@@ -97,11 +118,8 @@
                     android:shadowColor="@color/Bright_Teal"
                     android:layout_marginBottom="10dp"
                     android:layout_gravity="center"
-                    android:gravity="center"/>
-
+                    android:gravity="center" />
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
-
 </ScrollView>

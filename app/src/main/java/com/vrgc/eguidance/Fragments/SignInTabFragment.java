@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -47,26 +48,26 @@ public class SignInTabFragment extends Fragment {
         edtEmail = view.findViewById(R.id.signin_user);
         edtPassword = view.findViewById(R.id.signin_password);
         btnSignIn = view.findViewById(R.id.signin_button);
-        roleSpinner = view.findViewById(R.id.user_role_spinner);
+       // roleSpinner = view.findViewById(R.id.user_role_spinner);
+        AutoCompleteTextView roleDropdown = view.findViewById(R.id.user_role_dropdown);
+
 
         auth = FirebaseAuth.getInstance();
         userRef = FirebaseDatabase.getInstance().getReference("users");
 
         // Setup role spinner
         String[] roles = {"Patient", "Doctor", "Admin"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item, roles);
-        roleSpinner.setAdapter(adapter);
-        roleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedRole = roles[position];
-            }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
+                android.R.layout.simple_dropdown_item_1line,
+                roles
+        );
+        roleDropdown.setAdapter(adapter);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                selectedRole = "Patient";
-            }
+        roleDropdown.setOnItemClickListener((parent, view1, position, id) -> {
+            selectedRole = roles[position];
         });
+        // Optional: set default
+        roleDropdown.setText(roles[0], false);
 
         btnSignIn.setOnClickListener(v -> handleSignin());
 
