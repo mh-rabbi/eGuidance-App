@@ -6,26 +6,50 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Activity.SplashScActivity">
 
+    <!-- Welcome Text on Top -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:textStyle="bold"
-        android:text="Welcome to \nVirtual Remote Guidance Counselling\n Support\n"
-        android:textSize="30sp"
+        android:id="@+id/tvWelcomeText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Welcome to \nVirtual Remote Guidance Counselling\n Support"
+        android:textSize="24sp"
         android:textColor="@color/Navy_Blue"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="16dp"
         android:textAlignment="center"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/lottieView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Lottie Animation in Center -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:lottie_rawRes="@raw/splash_animation"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_speed="1"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcomeText"
+        app:layout_constraintBottom_toTopOf="@id/gifImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- Logo at Bottom -->
     <ImageView
-        android:src="@drawable/logo"
         android:id="@+id/gifImage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerInside"
-        android:layout_centerInParent="true"/>
-
-
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:src="@drawable/logo"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toBottomOf="@id/lottieView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
