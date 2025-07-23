@@ -28,8 +28,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="eGuidance app info will be added"
-            android:textSize="16sp"
+            android:text="eGuidance is an Android application designed to provide emotional and mental health guidance through online booking sessions, free support chats, and self-assessment tests. The app is built with Firebase integration for user authentication, real-time database management, and smooth UI experiences using modern Android components."
+            android:textSize="20sp"
             android:textColor="#444444"
             android:layout_marginBottom="24dp" />
 
