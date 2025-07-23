@@ -44,8 +44,8 @@
     <!-- Logo at Bottom -->
     <ImageView
         android:id="@+id/gifImage"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:src="@drawable/logo"
         android:scaleType="fitCenter"
         app:layout_constraintTop_toBottomOf="@id/lottieView"

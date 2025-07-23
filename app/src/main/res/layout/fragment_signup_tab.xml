@@ -91,13 +91,18 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Password -->
+                <!-- Password -->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/password_layout"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
+                    android:hint="Password"
                     app:endIconMode="password_toggle"
-                    android:hint="Password">
+                    app:errorEnabled="true"
+                    app:helperTextEnabled="true"
+                   >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/signup_password"
@@ -105,11 +110,13 @@
                         android:layout_height="50dp"
                         android:inputType="textPassword"
                         android:drawableStart="@drawable/password"
-                        android:drawablePadding="8dp" />
+                        android:drawablePadding="8dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
+
 
                 <!-- Confirm Password -->
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/confirm_password_layout"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

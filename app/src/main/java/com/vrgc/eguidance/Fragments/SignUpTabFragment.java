@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -25,13 +26,13 @@ import java.util.HashMap;
 public class SignUpTabFragment extends Fragment {
 
     EditText emailInput, passwordInput, confirmPasswordInput, nameInput;
+    TextInputLayout passwordLayout, confirmPasswordLayout;
     Button signBtn;
     FirebaseAuth auth;
     DatabaseReference dbRef;
 
     String email, password, confirmPassword, name;
     final String defaultRole = "Patient";
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,8 +44,32 @@ public class SignUpTabFragment extends Fragment {
         nameInput = view.findViewById(R.id.signup_name);
         signBtn = view.findViewById(R.id.signup_button);
 
+        passwordLayout = view.findViewById(R.id.password_layout);
+        confirmPasswordLayout = view.findViewById(R.id.confirm_password_layout);
+
         auth = FirebaseAuth.getInstance();
         dbRef = FirebaseDatabase.getInstance().getReference("users");
+
+        //  Show error when password field is focused and invalid
+        passwordInput.setOnFocusChangeListener((v, hasFocus) -> {
+            String pwd = passwordInput.getText().toString();
+            if (hasFocus && !isComplexPassword(pwd)) {
+                passwordLayout.setError("Password must be 8+ chars, 1 uppercase, 1 number, 1 symbol");
+            } else {
+                passwordLayout.setError(null);
+            }
+        });
+
+        //  Show error when confirm password field is focused and doesn't match
+        confirmPasswordInput.setOnFocusChangeListener((v, hasFocus) -> {
+            String pwd = passwordInput.getText().toString();
+            String confirmPwd = confirmPasswordInput.getText().toString();
+            if (hasFocus && !confirmPwd.equals(pwd)) {
+                confirmPasswordLayout.setError("Passwords do not match");
+            } else {
+                confirmPasswordLayout.setError(null);
+            }
+        });
 
         signBtn.setOnClickListener(v -> handleSignUp());
 
@@ -63,12 +88,12 @@ public class SignUpTabFragment extends Fragment {
         }
 
         if (!isComplexPassword(password)) {
-            passwordInput.setError("Password must be 8+ chars, 1 upper, 1 number, 1 symbol");
+            passwordLayout.setError("Password must be 8+ chars, 1 uppercase, 1 number, 1 symbol");
             return;
         }
 
         if (!password.equals(confirmPassword)) {
-            confirmPasswordInput.setError("Passwords do not match");
+            confirmPasswordLayout.setError("Passwords do not match");
             return;
         }
 
@@ -118,11 +143,12 @@ public class SignUpTabFragment extends Fragment {
         }
     }
 
-
     private void clearFields() {
         nameInput.setText("");
         emailInput.setText("");
         passwordInput.setText("");
         confirmPasswordInput.setText("");
+        passwordLayout.setError(null);
+        confirmPasswordLayout.setError(null);
     }
 }

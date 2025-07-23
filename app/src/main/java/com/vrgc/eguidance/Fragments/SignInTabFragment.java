@@ -34,7 +34,6 @@ import com.vrgc.eguidance.R;
 public class SignInTabFragment extends Fragment {
     private EditText edtEmail, edtPassword;
     private Button btnSignIn;
-    private Spinner roleSpinner;
     private String selectedRole;
 
     private FirebaseAuth auth;
@@ -48,14 +47,13 @@ public class SignInTabFragment extends Fragment {
         edtEmail = view.findViewById(R.id.signin_user);
         edtPassword = view.findViewById(R.id.signin_password);
         btnSignIn = view.findViewById(R.id.signin_button);
-       // roleSpinner = view.findViewById(R.id.user_role_spinner);
         AutoCompleteTextView roleDropdown = view.findViewById(R.id.user_role_dropdown);
 
 
         auth = FirebaseAuth.getInstance();
         userRef = FirebaseDatabase.getInstance().getReference("users");
 
-        // Setup role spinner
+        // Setup role dropdown box
         String[] roles = {"Patient", "Doctor", "Admin"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
                 android.R.layout.simple_dropdown_item_1line,
@@ -66,7 +64,7 @@ public class SignInTabFragment extends Fragment {
         roleDropdown.setOnItemClickListener((parent, view1, position, id) -> {
             selectedRole = roles[position];
         });
-        // Optional: set default
+        //  set default
         roleDropdown.setText(roles[0], false);
 
         btnSignIn.setOnClickListener(v -> handleSignin());
