@@ -28,7 +28,7 @@ import com.vrgc.eguidance.R;
 public class DoctorHomeFragment extends Fragment {
     private TextView tvWelcome;
 
-    private CardView cardMeetPatient, cardViewSchedules, cardFreeSupport, cardMentalHealthTest, cardTakeEmotionalTest, cardExploreService;
+    private CardView cardMeetPatient, cardViewSchedules, cardFreeSupport, comingSoon1, comingSoon2, comingSoon3;
 
     private FirebaseAuth auth;
     private DatabaseReference userRef;
@@ -85,6 +85,24 @@ public class DoctorHomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FreeSupportActivity.class);
                 startActivity(intent);
+            }
+        });
+        comingSoon1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "New features coming soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        comingSoon2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "New features coming soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        comingSoon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "New features coming soon!", Toast.LENGTH_SHORT).show();
             }
         });
 

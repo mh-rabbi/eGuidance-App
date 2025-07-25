@@ -44,7 +44,11 @@
                 app:layout_constraintTop_toBottomOf="@id/vrgc_title"
                 app:layout_constraintEnd_toStartOf="@+id/vrgc_image"/>
 
-            <ImageView
+            <com.airbnb.lottie.LottieAnimationView
+                app:lottie_rawRes="@raw/vrgc_animation"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_speed="1"
                 android:layout_width="0dp"
                 android:layout_height="160dp"
                 android:id="@+id/vrgc_image"

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +20,7 @@ import com.vrgc.eguidance.Activity.Admin.ManageUserActivity;
 import com.vrgc.eguidance.R;
 
 public class AdminHomeFragment extends Fragment {
-    public CardView cardAdminBooking, cardAddDoctor, cardManageUser;
+    public CardView cardAdminBooking, cardAddDoctor, cardManageUser, comingSoon1, comingSoon2, comingSoon3;
 
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -30,6 +31,8 @@ public class AdminHomeFragment extends Fragment {
         cardAddDoctor = view.findViewById(R.id.addDoctor);
         cardAdminBooking = view.findViewById(R.id.adminBooking);
         cardManageUser = view.findViewById(R.id.manageUser);
+        comingSoon1 = view.findViewById(R.id.comingSoon1);
+
 
         cardAddDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +58,24 @@ public class AdminHomeFragment extends Fragment {
             }
         });
 
+        comingSoon1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "New features coming soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        comingSoon2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "New features coming soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        comingSoon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "New features coming soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }
