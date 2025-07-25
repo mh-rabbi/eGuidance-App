@@ -43,6 +43,9 @@ public class DoctorHomeFragment extends Fragment {
         cardMeetPatient = view.findViewById(R.id.cardMeetPatient);
         cardViewSchedules = view.findViewById(R.id.cardViewSchedules);
         cardFreeSupport = view.findViewById(R.id.cardFreeSupport);
+        comingSoon1 = view.findViewById(R.id.comingSoon1);
+        comingSoon2 = view.findViewById(R.id.comingSoon2);
+        comingSoon3 = view.findViewById(R.id.comingSoon3);
 
         auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : null;

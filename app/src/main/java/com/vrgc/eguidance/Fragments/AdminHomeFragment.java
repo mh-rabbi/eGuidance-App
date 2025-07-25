@@ -32,6 +32,8 @@ public class AdminHomeFragment extends Fragment {
         cardAdminBooking = view.findViewById(R.id.adminBooking);
         cardManageUser = view.findViewById(R.id.manageUser);
         comingSoon1 = view.findViewById(R.id.comingSoon1);
+        comingSoon2 = view.findViewById(R.id.comingSoon2);
+        comingSoon3 = view.findViewById(R.id.comingSoon3);
 
 
         cardAddDoctor.setOnClickListener(new View.OnClickListener() {
